@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podcast Video Delivery Status</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.status {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    background: #334155;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 20px;
+    margin-bottom: 15px;
+}
+
+.progress {
+    height: 100%;
+    background: #22c55e;
+    width: 0%;
+    transition: 0.5s;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 8px 0;
+}
+
+.done {
+    color: #22c55e;
+}
+
+.pending {
+    color: #facc15;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: gray;
+    color: white;
+    cursor: not-allowed;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎙️ Podcast Video Delivery Status</h1>
+<div class="container">
+
+<!-- Podcast 1 -->
+<div class="card">
+    <h2>Podcast With Kbt Zahid</h2>
+    <div class="status">Current Status: Pending</div>
+    <div>Complete: <span id="percent1"></span>%</div>
+
+    <div class="progress-bar">
+        <div class="progress" id="bar1"></div>
+    </div>
+
+    <ul id="list1">
+        <li class="done">✔ Preparing Questions</li>
+        <li class="done">✔ Recording Voice</li>
+        <li class="done">✔ Making Seeable Video</li>
+        <li class="pending">✖ Editing Professionally</li>
+        <li class="pending">✖ Add Animating Intro</li>
+    </ul>
+
+    <button disabled>View (Currently not available)</button>
+</div>
+
+<!-- Podcast 2 -->
+<div class="card">
+    <h2>Podcast With Saturakshu Gaming</h2>
+    <div class="status">Current Status: Pending</div>
+    <div>Complete: <span id="percent2"></span>%</div>
+
+    <div class="progress-bar">
+        <div class="progress" id="bar2"></div>
+    </div>
+
+    <ul id="list2">
+        <li class="pending">✖ Preparing Questions</li>
+        <li class="pending">✖ Recording Voice</li>
+        <li class="pending">✖ Making Seeable Video</li>
+        <li class="pending">✖ Editing Professionally</li>
+        <li class="pending">✖ Add Animating Intro</li>
+    </ul>
+
+    <button disabled>View (Currently not available)</button>
+</div>
+
+</div>
+
+<script>
+// Function to calculate progress
+function calculateProgress(listId, percentId, barId) {
+    const list = document.querySelectorAll(`#${listId} li`);
+    let done = 0;
+
+    list.forEach(item => {
+        if(item.classList.contains("done")) done++;
+    });
+
+    let percent = Math.round((done / list.length) * 100);
+
+    document.getElementById(percentId).innerText = percent;
+    document.getElementById(barId).style.width = percent + "%";
+}
+
+// Run calculations
+calculateProgress("list1", "percent1", "bar1");
+calculateProgress("list2", "percent2", "bar2");
+</script>
+
+</body>
+</html>
